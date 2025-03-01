@@ -1,4 +1,6 @@
 import requests
+from urllib.parse import urljoin
+from bs4 import BeautifulSoup
 
 def get(current_url):
     headers = {
@@ -7,8 +9,6 @@ def get(current_url):
     response = requests.get(current_url, timeout=5, headers=headers)
     return response
 
-def some(soup, visited, to_visit, current_url):
-    for link in soup.find_all("a", href=True):
-        full_url = urljoin(current_url, link["href"])
-        if full_url not in visited and full_url.startswith("http"):
-            to_visit.append(full_url)
+def get_all_links(response):
+    soup = BeautifulSoup(response.text, "html.parser")
+    return soup.find_all("a", href=True)
