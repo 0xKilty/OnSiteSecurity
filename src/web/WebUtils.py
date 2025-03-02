@@ -1,5 +1,5 @@
 import requests
-from urllib.parse import urljoin
+from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 
 def get(current_url):
@@ -12,3 +12,7 @@ def get(current_url):
 def get_all_links(response):
     soup = BeautifulSoup(response.text, "html.parser")
     return soup.find_all("a", href=True)
+
+def get_domain(url):
+    parsed_url = urlparse(url)
+    return parsed_url.netloc

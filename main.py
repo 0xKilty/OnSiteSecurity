@@ -1,14 +1,17 @@
 from src.web.Crawler import Crawler
 from src.data.Database import Database
+from src.scan.Scan import Scan
 
 def main():
     starting_page = "https://fortcollinschamber.com/resources/small-business-resources/"
-    crawler = Crawler(starting_page)
-    # crawler.start()
-    with Database("test.db") as db:
-        db.create_table("sites", {
-            "url": "TEXT UNIQUE"
-        })
+
+    with Crawler(starting_page, "test2.db") as crawler:
+        crawler.start()
+
+    #domain = "fortcollinschamber.com"
+    #scan = Scan(domain)
+    #scan.run_nmap()
+    
 
 if __name__ == "__main__":
     main()
