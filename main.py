@@ -5,7 +5,7 @@ from src.scan.Scan import Scan
 def main():
     starting_page = "https://fortcollinschamber.com/resources/small-business-resources/"
 
-    with Crawler(starting_page, "test2.db") as crawler:
+    with Crawler("test.db", starting_page=starting_page) as crawler:
         crawler.start()
 
     #domain = "fortcollinschamber.com"
